@@ -41,7 +41,7 @@ class Server(paramiko.ServerInterface):
 
     def check_channel_exec_request(self, channel, command):
         print('Grabbing subprocess info...')
-        cmd_output = subprocess.check_output(command, shell = True)
+        cmd_output = subprocess.check_output(command.decode('utf-8'), shell = True)
         cmd_output = cmd_output.strip()
         channel.send(cmd_output)
         return True
